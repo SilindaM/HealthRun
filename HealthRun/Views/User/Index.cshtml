@@ -1,0 +1,29 @@
+﻿@using HealthRun.ViewModels
+@model List<UserViewModel>
+
+<section class="flush-with-above">
+    <div class="container">
+        
+             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    
+                        @foreach (var user in Model)
+                        {
+                            <div class="col-md-4">
+                                 <a type="button" asp-controller="User" asp-action="Detail"  asp-route-id="@user.Id">
+                                        <div class="card mb-2 box-shadow">
+                                            <img class="card-img-top" src="@user.ProfileImageUrl" width="60%" height="40%" alt="Card image cap">
+                                            <div class="card-body text-center">
+                                                <p class="card-text">@user.UserName</p>
+                                                <p class="card-text">@user.Location</p>
+
+                                            </div>
+                                        </div>
+                                 </a>
+                              
+                            </div>
+                        }
+            </div>
+        <!--end of row-->
+    </div>
+    <!--end of container-->
+</section>
