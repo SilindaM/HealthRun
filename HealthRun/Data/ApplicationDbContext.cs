@@ -15,5 +15,9 @@ namespace HealthRun.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<UserFollowing> Followers { get; set; }
+        public DbSet<UserFollowing> Followees{ get; set; }
+        public DbSet<ClubAttendees> ClubAttendees { get; set; }
+        public DbSet<RaceAttendees> RaceAttendees { get; set; }
     }
 }

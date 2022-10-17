@@ -16,8 +16,9 @@ namespace HealthRun.Models
         public Address? Address { get; set; }
         public ICollection<Club> Clubs { get; set; }
         public ICollection<Race> Races { get; set; }
-        public ICollection<UserFollowing> Followers { get; set; }
-        public ICollection<UserFollowing> Following { get; set; }
+        public ICollection<ClubAttendees> ClubAttendees { get; set; }
+        public ICollection<RaceAttendees> RaceAttendees { get; set; }
+        public ICollection<UserFollowing> Followees { get; set; }
 
     }
 }

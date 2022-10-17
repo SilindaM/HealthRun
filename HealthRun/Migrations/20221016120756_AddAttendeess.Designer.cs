@@ -4,6 +4,7 @@ using HealthRun.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthRun.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221016120756_AddAttendeess")]
+    partial class AddAttendeess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,27 +206,6 @@ namespace HealthRun.Migrations
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("HealthRun.Models.ClubAttendees", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("ClubId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("isHost")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("ClubAttendees");
-                });
-
             modelBuilder.Entity("HealthRun.Models.Race", b =>
                 {
                     b.Property<int>("Id")
@@ -284,27 +265,6 @@ namespace HealthRun.Migrations
                     b.ToTable("Races");
                 });
 
-            modelBuilder.Entity("HealthRun.Models.RaceAttendees", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("RaceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("isHost")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("RaceAttendees");
-                });
-
             modelBuilder.Entity("HealthRun.Models.State", b =>
                 {
                     b.Property<int>("Id")
@@ -322,21 +282,6 @@ namespace HealthRun.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("States");
-                });
-
-            modelBuilder.Entity("HealthRun.Models.UserFollowing", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ObserverId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ObserverId");
-
-                    b.ToTable("UserFollowing");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -498,15 +443,6 @@ namespace HealthRun.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("HealthRun.Models.ClubAttendees", b =>
-                {
-                    b.HasOne("HealthRun.Models.AppUser", "AppUser")
-                        .WithMany("ClubAttendees")
-                        .HasForeignKey("AppUserId");
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("HealthRun.Models.Race", b =>
                 {
                     b.HasOne("HealthRun.Models.Address", "Address")
@@ -522,24 +458,6 @@ namespace HealthRun.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("HealthRun.Models.RaceAttendees", b =>
-                {
-                    b.HasOne("HealthRun.Models.AppUser", "AppUser")
-                        .WithMany("RaceAttendees")
-                        .HasForeignKey("AppUserId");
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("HealthRun.Models.UserFollowing", b =>
-                {
-                    b.HasOne("HealthRun.Models.AppUser", "Observer")
-                        .WithMany("Followees")
-                        .HasForeignKey("ObserverId");
-
-                    b.Navigation("Observer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -595,13 +513,7 @@ namespace HealthRun.Migrations
 
             modelBuilder.Entity("HealthRun.Models.AppUser", b =>
                 {
-                    b.Navigation("ClubAttendees");
-
                     b.Navigation("Clubs");
-
-                    b.Navigation("Followees");
-
-                    b.Navigation("RaceAttendees");
 
                     b.Navigation("Races");
                 });
